@@ -1,3 +1,7 @@
+# Metro Card Management System
+
+[![CI/CD](https://github.com/Naveen854/geektrust-metro-card/actions/workflows/ci.yml/badge.svg)](https://github.com/Naveen854/geektrust-metro-card/actions)
+
 # Pre-requisites
 * NodeJS 12.6.0/14.15.4/16.10.0
 * npm
