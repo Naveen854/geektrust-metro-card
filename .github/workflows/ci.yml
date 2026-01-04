@@ -1,0 +1,58 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js 16.0
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16.0'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+      
+      - name: Install dependencies
+        run: npm ci --silent
+      
+      - name: Run tests
+        run: npm test --silent
+      
+      - name: Verify app runs with sample input
+        run: npm start --silent sample_input/input1.txt
+
+  lint-and-verify:
+    name: Lint and Verify
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js 16.0
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16.0'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+      
+      - name: Install dependencies
+        run: npm ci --silent
+      
+      - name: Verify all sample inputs
+        run: |
+          for file in sample_input/*.txt; do
+            echo "Testing with $file"
+            npm start --silent "$file" || exit 1
+          done
+
