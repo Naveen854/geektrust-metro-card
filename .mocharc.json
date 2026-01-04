@@ -1,0 +1,7 @@
+{
+  "spec": "test",
+  "recursive": true,
+  "timeout": 5000,
+  "exit": true
+}
+
