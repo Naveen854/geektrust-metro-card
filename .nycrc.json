@@ -1,0 +1,10 @@
+{
+  "reporter": ["text", "html", "json-summary"],
+  "report-dir": "coverage",
+  "check-coverage": true,
+  "lines": 70,
+  "functions": 70,
+  "branches": 70,
+  "statements": 70
+}
+

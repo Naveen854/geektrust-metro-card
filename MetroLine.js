@@ -1,6 +1,6 @@
 const MetroCard = require('./MetroCard')
 const MetroStation = require('./MetroStation')
-const { RETURN_FARE_DIVISOR } = require('./config/constants')
+const { RETURN_FARE_DIVISOR, ERROR_MESSAGES } = require('./config/constants')
 
 class MetroLine {
     constructor(fares){
@@ -32,7 +32,6 @@ class MetroLine {
 
     // Helper: validate card and station existence
     _validateEntities(cardId, fromStation){
-        const { ERROR_MESSAGES } = require('./config/constants')
         const card = this.cards[cardId]
         const station = this.stations[fromStation]
         if (!card) throw new Error(ERROR_MESSAGES.CARD_NOT_REGISTERED.replace('{cardId}', cardId))

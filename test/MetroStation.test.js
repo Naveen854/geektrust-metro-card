@@ -28,4 +28,20 @@ describe('MetroStation (unit)', () => {
     assert.strictEqual(lines[2], `${PASSENGER_TYPES.ADULT} 2`)
     assert.strictEqual(lines[3], `${PASSENGER_TYPES.KID} 1`)
   })
+
+  it('recordTrip with default parameters', () => {
+    const s = new MetroStation('AIRPORT')
+    s.recordTrip(PASSENGER_TYPES.ADULT, 200)
+    assert.strictEqual(s.totalCollection, 200)
+    assert.strictEqual(s.totalDiscount, 0)
+    assert.strictEqual(s.passengerCounts[PASSENGER_TYPES.ADULT], 1)
+  })
+
+  it('recordTrip with discount and service fee', () => {
+    const s = new MetroStation('CENTRAL')
+    s.recordTrip(PASSENGER_TYPES.ADULT, 100, 100, 5)
+    assert.strictEqual(s.totalCollection, 105)
+    assert.strictEqual(s.totalDiscount, 100)
+    assert.strictEqual(s.passengerCounts[PASSENGER_TYPES.ADULT], 1)
+  })
 })

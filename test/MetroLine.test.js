@@ -20,6 +20,12 @@ describe('MetroLine helpers', () => {
     assert.strictEqual(res.discount, 200 - res.fareToCharge)
   })
 
+  it('_computeFareAndDiscount returns full fare for non-return', () => {
+    const res = ml._computeFareAndDiscount(200, false)
+    assert.strictEqual(res.fareToCharge, 200)
+    assert.strictEqual(res.discount, 0)
+  })
+
   it('_handleRechargeIfNeeded returns 0 when balance sufficient', () => {
     const card = ml.cards['MC1']
     card.balance = 200

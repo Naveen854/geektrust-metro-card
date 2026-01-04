@@ -5,11 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "node geektrust.js",
-    "test": "mocha test"
+    "test": "mocha test",
+    "test:coverage": "nyc --reporter=text --reporter=html mocha test"
   },
   "author": "geektrust",
   "license": "ISC",
   "dependencies": {
     "mocha": "^10.0.0"
+  },
+  "devDependencies": {
+    "nyc": "^15.1.0"
   }
 }
